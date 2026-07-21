@@ -1,0 +1,24 @@
+{
+  "name": "home-climate-solutions",
+  "compatibility_date": "2026-07-21",
+  "main": ".open-next/worker.js",
+
+  "assets": {
+    "directory": ".open-next/assets"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "home-climate-prod",
+      "database_id": "2ede6603-1e02-4e8b-b6a8-66d31bf53fea"
+    }
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "UPLOADS",
+      "bucket_name": "home-climate-uploads"
+    }
+  ]
+}
