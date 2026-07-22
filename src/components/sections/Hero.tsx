@@ -42,15 +42,7 @@ export default function Hero() {
 
             <a
               href="#quote"
-              className="
-              rounded-lg
-              bg-blue-600
-              px-7
-              py-4
-              font-semibold
-              text-white
-              hover:bg-blue-700
-              "
+              className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
             >
               Request a Free Quote
             </a>
