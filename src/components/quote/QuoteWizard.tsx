@@ -104,8 +104,46 @@ export default function QuoteWizard() {
 
     async function submitQuote() {
 
-        setLoading(true);
         setError("");
+
+        if (
+            !formData.name ||
+            !formData.email ||
+            !formData.postcode
+        ) {
+            setError(
+                "Please complete your contact details."
+            );
+            return;
+        }
+
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (
+            !emailRegex.test(formData.email)
+        ) {
+            setError(
+                "Please enter a valid email address."
+            );
+            return;
+        }
+
+        const postcodeRegex =
+            /^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$/i;
+
+        if (
+            !postcodeRegex.test(
+                formData.postcode
+            )
+        ) {
+            setError(
+                "Please enter a valid UK postcode."
+            );
+            return;
+        }
+
+        setLoading(true);
 
         try {
 
@@ -427,6 +465,92 @@ export default function QuoteWizard() {
                                     <option>Just researching</option>
 
                                 </select>
+
+                            </label>
+                            <label className="mt-4 block">
+
+                                Existing AC System
+
+                                <select
+                                    className="mt-2 w-full rounded border p-3"
+                                    value={formData.existingAcSystem}
+                                    onChange={(e) =>
+                                        updateField(
+                                            "existingAcSystem",
+                                            e.target.value
+                                        )
+                                    }
+                                >
+
+                                    <option value="">
+                                        No existing system
+                                    </option>
+
+                                    <option>
+                                        Existing AC installed
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+
+                            <label className="mt-4 block">
+
+                                Preferred Manufacturer
+
+                                <select
+                                    className="mt-2 w-full rounded border p-3"
+                                    value={formData.manufacturer}
+                                    onChange={(e) =>
+                                        updateField(
+                                            "manufacturer",
+                                            e.target.value
+                                        )
+                                    }
+                                >
+
+                                    <option value="">
+                                        No preference
+                                    </option>
+
+                                    <option>
+                                        Mitsubishi Electric
+                                    </option>
+
+                                    <option>
+                                        Daikin
+                                    </option>
+
+                                    <option>
+                                        Fujitsu
+                                    </option>
+
+                                    <option>
+                                        Panasonic
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+
+                            <label className="mt-4 block">
+
+                                Additional Information
+
+                                <textarea
+                                    rows={5}
+                                    className="mt-2 w-full rounded border p-3"
+                                    placeholder="Tell us anything useful about your project..."
+                                    value={formData.notes}
+                                    onChange={(e) =>
+                                        updateField(
+                                            "notes",
+                                            e.target.value
+                                        )
+                                    }
+                                />
 
                             </label>
 
