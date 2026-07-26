@@ -7,7 +7,7 @@ export default function Header() {
           href="/"
           className="text-xl font-bold text-slate-900"
         >
-          Home Climate Solutions
+          Home Climate Systems
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">

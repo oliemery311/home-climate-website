@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title:
-    "Home Climate Solutions | Air Conditioning Installation Leicester",
+    "Home Climate Systems | Air Conditioning Installation Leicester",
 
   description:
     "Professional residential air conditioning installation across Leicester and the Midlands. Bedrooms, home offices, lounges and multi-room systems.",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     title:
-      "Home Climate Solutions | Residential Air Conditioning",
+      "Home Climate Systems | Residential Air Conditioning",
 
     description:
       "Comfortable homes, professionally installed air conditioning.",

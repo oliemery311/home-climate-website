@@ -34,7 +34,7 @@ Tell us about your home and we will provide a free quotation.
 
 
 <a
-href="mailto:hello@homeclimatesolutions.co.uk"
+href="mailto:hello@homeclimatesystems.co.uk"
 className="
 mt-8
 inline-block

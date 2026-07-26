@@ -23,7 +23,7 @@ text-3xl
 font-bold
 md:text-4xl
 ">
-Why choose Home Climate Solutions?
+Why choose Home Climate Systems?
 </h2>
 
 
