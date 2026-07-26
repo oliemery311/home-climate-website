@@ -91,9 +91,10 @@ export async function POST(
 
 
 
-        await db
-            .prepare(
-                `
+        const result =
+            await db
+                .prepare(
+                    `
 INSERT INTO quote_requests
 (
 reference_number,
@@ -156,53 +157,54 @@ VALUES
 ?
 )
 `
-            )
-            .bind(
+                )
+                .bind(
 
-                reference,
+                    reference,
 
-                lead.score,
+                    lead.score,
 
-                lead.temperature,
+                    lead.temperature,
 
-                body.name,
+                    body.name,
 
-                body.email,
+                    body.email,
 
-                body.phone ?? null,
+                    body.phone ?? null,
 
-                body.postcode ?? null,
+                    body.postcode ?? null,
 
-                body.address ?? null,
+                    body.address ?? null,
 
-                body.propertyType ?? null,
+                    body.propertyType ?? null,
 
-                JSON.stringify(body.roomTypes ?? []),
+                    JSON.stringify(body.roomTypes ?? []),
 
-                body.roomDimensions ?? null,
+                    body.roomDimensions ?? null,
 
-                body.numberOfUnits ?? null,
+                    body.numberOfUnits ?? null,
 
-                body.existingAc ?? null,
+                    body.existingAc ?? null,
 
-                body.preferredManufacturer ?? null,
+                    body.preferredManufacturer ?? null,
 
-                body.budgetRange ?? null,
+                    body.budgetRange ?? null,
 
-                body.timeframe ?? null,
+                    body.timeframe ?? null,
 
-                body.notes ?? null
+                    body.notes ?? null
 
-            )
-            .run();
-
+                )
+                .run();
 
 
         return NextResponse.json({
 
             success: true,
 
-            reference
+            reference,
+
+            quoteId: result.meta.last_row_id
 
         });
 
