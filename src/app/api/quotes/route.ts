@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { sendQuoteEmails } from "@/lib/email";
+
 import {
     validateQuote
 } from "@/lib/validation";
@@ -196,7 +198,47 @@ VALUES
 
                 )
                 .run();
+        await sendQuoteEmails(reference, {
+            name:
+                typeof body.name === "string"
+                    ? body.name
+                    : undefined,
 
+            email:
+                typeof body.email === "string"
+                    ? body.email
+                    : undefined,
+
+            phone:
+                typeof body.phone === "string"
+                    ? body.phone
+                    : undefined,
+
+            postcode:
+                typeof body.postcode === "string"
+                    ? body.postcode
+                    : undefined,
+
+            propertyType:
+                typeof body.propertyType === "string"
+                    ? body.propertyType
+                    : undefined,
+
+            budgetRange:
+                typeof body.budgetRange === "string"
+                    ? body.budgetRange
+                    : undefined,
+
+            timeframe:
+                typeof body.timeframe === "string"
+                    ? body.timeframe
+                    : undefined,
+
+            notes:
+                typeof body.notes === "string"
+                    ? body.notes
+                    : undefined,
+        });
 
         return NextResponse.json({
 
