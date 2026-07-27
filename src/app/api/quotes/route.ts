@@ -238,6 +238,35 @@ VALUES
                 typeof body.notes === "string"
                     ? body.notes
                     : undefined,
+            address:
+                typeof body.address === "string"
+                    ? body.address
+                    : undefined,
+
+            roomType:
+                typeof body.roomType === "string"
+                    ? body.roomType
+                    : undefined,
+
+            roomDimensions:
+                typeof body.roomDimensions === "string"
+                    ? body.roomDimensions
+                    : undefined,
+
+            existingAc:
+                typeof body.existingAcSystem === "string"
+                    ? body.existingAcSystem
+                    : undefined,
+
+            preferredManufacturer:
+                typeof body.manufacturer === "string"
+                    ? body.manufacturer
+                    : undefined,
+
+            numberOfUnits:
+                typeof body.numberOfUnits === "number"
+                    ? body.numberOfUnits
+                    : undefined,
         });
 
         return NextResponse.json({
