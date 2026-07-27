@@ -3,6 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { sendQuoteEmails } from "@/lib/email";
 
 import {
+    sanitizeText
+} from "@/lib/sanitize";
+
+import {
     validateQuote
 } from "@/lib/validation";
 
@@ -29,7 +33,23 @@ export async function POST(
 
         const body =
             await request.json() as Record<string, unknown>;
+        const cleanName =
+            sanitizeText(body.name);
 
+        const cleanEmail =
+            sanitizeText(body.email);
+
+        const cleanPhone =
+            sanitizeText(body.phone);
+
+        const cleanPostcode =
+            sanitizeText(body.postcode);
+
+        const cleanAddress =
+            sanitizeText(body.address);
+
+        const cleanNotes =
+            sanitizeText(body.notes);
 
         const validation =
             validateQuote(body);
@@ -168,15 +188,15 @@ VALUES
 
                     lead.temperature,
 
-                    body.name,
+                    cleanName,
 
-                    body.email,
+                    cleanEmail,
 
-                    body.phone ?? null,
+                    cleanPhone ??
 
-                    body.postcode ?? null,
+                    cleanPostcode ?? null,
 
-                    body.address ?? null,
+                    cleanAddress ?? null,
 
                     body.propertyType ?? null,
 
@@ -194,7 +214,7 @@ VALUES
 
                     body.timeframe ?? null,
 
-                    body.notes ?? null
+                    cleanNotes ?? null
 
                 )
                 .run();

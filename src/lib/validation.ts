@@ -37,16 +37,19 @@ export function validateQuote(
 
     if (
         typeof data.name !== "string" ||
-        data.name.trim().length === 0
-    )
-        errors.push("Name is required");
+        data.name.trim().length < 2 ||
+        data.name.length > 100
+    ) {
+        errors.push("Please enter a valid name.");
+    }
 
 
     if (
         typeof data.email !== "string" ||
-        data.email.trim().length === 0
-    )
-        errors.push("Email is required");
+        data.email.length > 255
+    ) {
+        errors.push("Please enter a valid email address.");
+    }
 
 
     if (
@@ -55,13 +58,39 @@ export function validateQuote(
     )
         errors.push("Invalid email");
 
+    if (
+        data.phone &&
+        typeof data.phone === "string" &&
+        data.phone.length > 30
+    ) {
+        errors.push("Phone number is too long.");
+    }
 
     if (
-        typeof data.postcode !== "string" ||
-        data.postcode.trim().length === 0
-    )
-        errors.push("Postcode is required");
+        data.postcode &&
+        typeof data.postcode === "string" &&
+        data.postcode.length > 20
+    ) {
+        errors.push("Postcode is too long.");
+    }
 
+    if (
+        data.address &&
+        typeof data.address === "string" &&
+        data.address.length > 255
+    ) {
+        errors.push("Address is too long.");
+    }
+
+    if (
+        data.notes &&
+        typeof data.notes === "string" &&
+        data.notes.length > 2000
+    ) {
+        errors.push(
+            "Notes must be under 2000 characters."
+        );
+    }
 
     return {
         valid: errors.length === 0,
