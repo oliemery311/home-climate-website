@@ -231,7 +231,7 @@ VALUES
 
                     cleanEmail,
 
-                    cleanPhone ??
+                    cleanPhone ?? null,
 
                     cleanPostcode ?? null,
 
@@ -342,15 +342,10 @@ VALUES
 
     }
     catch (error) {
-        console.error("QUOTE SUBMISSION ERROR:", error);
-
         return Response.json(
             {
                 success: false,
-                error:
-                    error instanceof Error
-                        ? error.message
-                        : "Unknown error",
+                error: "Unable to submit quote",
             },
             { status: 500 }
         );
