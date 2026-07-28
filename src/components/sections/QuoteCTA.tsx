@@ -32,7 +32,7 @@ text-blue-100
 Tell us about your home and we will provide a free quotation.
 </p>
 
-
+ {/* 
 <a
 href="mailto:hello@homeclimatesystems.co.uk"
 className="
@@ -49,6 +49,7 @@ text-blue-700
 Request a Quote
 </a>
 
+*/}
 
 </div>
 
