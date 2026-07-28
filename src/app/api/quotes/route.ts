@@ -342,20 +342,18 @@ VALUES
 
     }
     catch (error) {
+        console.error("QUOTE SUBMISSION ERROR:", error);
 
-        console.error(error);
-
-
-        return NextResponse.json(
+        return Response.json(
             {
                 success: false,
-                error: "Unable to submit quote"
+                error:
+                    error instanceof Error
+                        ? error.message
+                        : "Unknown error",
             },
-            {
-                status: 500
-            }
+            { status: 500 }
         );
-
     }
 
 }
