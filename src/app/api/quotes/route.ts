@@ -69,7 +69,46 @@ export async function POST(
 
         }
 
+        const token =
+            typeof body.turnstileToken === "string"
+                ? body.turnstileToken
+                : "";
 
+        const verifyResponse =
+            await fetch(
+                "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams({
+                        secret:
+                            process.env.TURNSTILE_SECRET ?? "",
+                        response: token
+                    })
+                }
+            );
+
+        const verifyResult =
+            await verifyResponse.json() as {
+                success?: boolean;
+            };
+
+        if (!verifyResult.success) {
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Verification failed"
+                },
+                {
+                    status: 400
+                }
+            );
+
+        }
 
         const reference =
             await createReference();

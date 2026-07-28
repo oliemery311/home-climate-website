@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import type { QuoteFormData } from "@/types/quote";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { TURNSTILE_SITE_KEY } from "@/lib/env";
 
 const initialData: QuoteFormData = {
     propertyType: "",
@@ -29,6 +31,7 @@ const steps = [
     "Review",
 ];
 
+
 export default function QuoteWizard() {
     const [step, setStep] = useState(1);
 
@@ -41,7 +44,12 @@ export default function QuoteWizard() {
 
     const [reference, setReference] =
         useState<string | null>(null);
+        
+    const [turnstileToken, setTurnstileToken] =
+        useState("");
 
+    const [verified, setVerified] =
+        useState(false);
 
     function updateField(
         field: keyof QuoteFormData,
@@ -153,7 +161,10 @@ export default function QuoteWizard() {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify({
+                        ...formData,
+                        turnstileToken
+                    }),
                 });
 
 
@@ -609,7 +620,19 @@ export default function QuoteWizard() {
                             <h3 className="text-xl font-semibold">
                                 Check your details
                             </h3>
-
+                            <div className="mt-6">
+                                <Turnstile
+                                    siteKey={TURNSTILE_SITE_KEY}
+                                    onSuccess={(token) => {
+                                        setTurnstileToken(token);
+                                        setVerified(true);
+                                    }}
+                                    onExpire={() => {
+                                        setVerified(false);
+                                        setTurnstileToken("");
+                                    }}
+                                />
+                            </div>
 
                             <pre className="mt-6 overflow-auto rounded bg-slate-100 p-4 text-sm">
                                 {JSON.stringify(
@@ -664,14 +687,18 @@ export default function QuoteWizard() {
                         ) : (
 
                             <button
-                                disabled={loading}
+                                disabled={loading || !verified}
                                 onClick={submitQuote}
                                 className="rounded bg-green-600 px-5 py-3 text-white"
                             >
 
-                                {loading
-                                    ? "Sending..."
-                                    : "Submit Request"}
+                                {
+                                    loading
+                                        ? "Sending..."
+                                        : !verified
+                                            ? "Complete Verification"
+                                            : "Submit Request"
+                                }
 
                             </button>
 
