@@ -57,9 +57,6 @@ export async function POST(
             success: true,
             key,
             filename: file.name,
-            mimeType: file.type,
-            size: file.size,
-            quoteId
         });
 
     } catch (error) {
