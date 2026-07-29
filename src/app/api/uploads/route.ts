@@ -21,6 +21,7 @@ export async function POST(
 
         if (
             !(file instanceof File)
+
         ) {
             return NextResponse.json(
                 {
@@ -32,7 +33,31 @@ export async function POST(
                 }
             );
         }
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp",
+        ];
 
+        if (!allowedTypes.includes(file.type)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Invalid file type",
+                },
+                { status: 400 }
+            );
+        }
+
+        if (file.size > 10 * 1024 * 1024) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "File too large",
+                },
+                { status: 400 }
+            );
+        }
         const { env } =
             getCloudflareContext();
         const cfEnv =
