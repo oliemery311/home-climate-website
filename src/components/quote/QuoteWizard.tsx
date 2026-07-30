@@ -44,7 +44,10 @@ export default function QuoteWizard() {
 
     const [reference, setReference] =
         useState<string | null>(null);
-        
+
+    const [files, setFiles] =
+        useState<File[]>([]);
+
     const [turnstileToken, setTurnstileToken] =
         useState("");
 
@@ -170,6 +173,7 @@ export default function QuoteWizard() {
 
             const data = await response.json() as {
                 reference?: string;
+                quoteId?: number;
                 error?: string;
             };
 
@@ -184,8 +188,53 @@ export default function QuoteWizard() {
             }
 
 
+            const quoteReference =
+                data.reference ?? "";
+
+            const quoteId =
+                data.quoteId;
+
+            for (const file of files) {
+
+                const uploadForm =
+                    new FormData();
+
+                uploadForm.append(
+                    "file",
+                    file
+                );
+
+                uploadForm.append(
+                    "reference",
+                    quoteReference
+                );
+
+                uploadForm.append(
+                    "quoteId",
+                    String(quoteId)
+                );
+
+                const uploadResponse =
+                    await fetch(
+                        "/api/uploads",
+                        {
+                            method: "POST",
+                            body: uploadForm
+                        }
+                    );
+
+                if (!uploadResponse.ok) {
+
+                    throw new Error(
+                        "Photo upload failed."
+                    );
+
+                }
+
+            }
+
             setReference(
-                data.reference ?? ""
+                quoteReference
             );
 
         } catch (err) {
@@ -478,6 +527,38 @@ export default function QuoteWizard() {
                                 </select>
 
                             </label>
+                            <label className="mt-4 block">
+
+                                Photos
+
+                                <input
+                                    type="file"
+                                    multiple
+                                    accept="image/jpeg,image/png,image/webp"
+                                    className="mt-2 w-full rounded border p-3"
+                                    onChange={(e) => {
+
+                                        const selected =
+                                            Array.from(
+                                                e.target.files ?? []
+                                            );
+
+                                        setFiles(selected);
+
+                                    }}
+                                />
+
+                            </label>
+
+                            {files.length > 0 && (
+
+                                <div className="mt-3 rounded bg-slate-100 p-3 text-sm">
+
+                                    {files.length} photo(s) selected
+
+                                </div>
+
+                            )}
                             <label className="mt-4 block">
 
                                 Existing AC System

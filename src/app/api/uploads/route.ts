@@ -77,6 +77,36 @@ export async function POST(
                 }
             }
         );
+        
+        await cfEnv.DB
+            .prepare(
+                `
+INSERT INTO file_uploads
+(
+quote_id,
+filename,
+r2_key,
+mime_type,
+file_size
+)
+VALUES
+(
+?,
+?,
+?,
+?,
+?
+)
+`
+            )
+            .bind(
+                Number(quoteId),
+                file.name,
+                key,
+                file.type,
+                file.size
+            )
+            .run();
 
         return NextResponse.json({
             success: true,
