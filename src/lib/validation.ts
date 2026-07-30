@@ -83,6 +83,16 @@ export function validateQuote(
     }
 
     if (
+        data.address &&
+        typeof data.address === "string" &&
+        data.address.length > 300
+    ) {
+        errors.push(
+            "Address too long."
+        );
+    }
+
+    if (
         data.notes &&
         typeof data.notes === "string" &&
         data.notes.length > 2000
@@ -91,6 +101,8 @@ export function validateQuote(
             "Notes must be under 2000 characters."
         );
     }
+
+    
 
     return {
         valid: errors.length === 0,

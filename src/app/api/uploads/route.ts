@@ -77,7 +77,7 @@ export async function POST(
                 }
             }
         );
-        
+
         await cfEnv.DB
             .prepare(
                 `
@@ -109,9 +109,7 @@ VALUES
             .run();
 
         return NextResponse.json({
-            success: true,
-            key,
-            filename: file.name,
+            success: true
         });
 
     } catch (error) {

@@ -19,9 +19,7 @@ export default function Hero() {
             text-slate-900
             md:text-6xl
           ">
-            Comfortable homes,
-            professionally installed
-            air conditioning.
+            Air Conditioning Installation for Homes, Home Offices & Static Caravans.
           </h1>
 
 

@@ -6,6 +6,7 @@ const services = [
 "Bedroom Air Conditioning",
 "Home Office Air Conditioning",
 "Lounge & Conservatory Cooling",
+"Static Caravan Air Conditioning",
 ];
 
 

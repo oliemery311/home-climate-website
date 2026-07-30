@@ -376,6 +376,7 @@ export default function QuoteWizard() {
                                     <option>Terraced</option>
                                     <option>Flat</option>
                                     <option>Bungalow</option>
+                                    <option>Static Caravan</option>
                                     <option>Other</option>
 
                                 </select>
@@ -715,13 +716,85 @@ export default function QuoteWizard() {
                                 />
                             </div>
 
-                            <pre className="mt-6 overflow-auto rounded bg-slate-100 p-4 text-sm">
-                                {JSON.stringify(
-                                    formData,
-                                    null,
-                                    2
+                            <div className="mt-6 space-y-4">
+
+                                <div>
+                                    <strong>Property Type:</strong>{" "}
+                                    {formData.propertyType}
+                                </div>
+
+                                <div>
+                                    <strong>Room Type:</strong>{" "}
+                                    {formData.roomType}
+                                </div>
+
+                                <div>
+                                    <strong>Indoor Units:</strong>{" "}
+                                    {formData.numberOfUnits}
+                                </div>
+
+                                <div>
+                                    <strong>Room Dimensions:</strong>{" "}
+                                    {formData.roomDimensions || "Not provided"}
+                                </div>
+
+                                <div>
+                                    <strong>Budget:</strong>{" "}
+                                    {formData.budgetRange}
+                                </div>
+
+                                <div>
+                                    <strong>Timeframe:</strong>{" "}
+                                    {formData.timeframe}
+                                </div>
+
+                                <div>
+                                    <strong>Name:</strong>{" "}
+                                    {formData.name}
+                                </div>
+
+                                <div>
+                                    <strong>Email:</strong>{" "}
+                                    {formData.email}
+                                </div>
+
+                                <div>
+                                    <strong>Phone:</strong>{" "}
+                                    {formData.phone || "Not provided"}
+                                </div>
+
+                                <div>
+                                    <strong>Postcode:</strong>{" "}
+                                    {formData.postcode}
+                                </div>
+
+                                <div>
+                                    <strong>Address:</strong>{" "}
+                                    {formData.address || "Not provided"}
+                                </div>
+
+                                <div>
+                                    <strong>Photos:</strong>{" "}
+                                    {files.length}
+                                </div>
+
+                                {formData.notes && (
+
+                                    <div>
+
+                                        <strong>Additional Notes:</strong>
+
+                                        <div className="mt-2 rounded bg-slate-100 p-3">
+
+                                            {formData.notes}
+
+                                        </div>
+
+                                    </div>
+
                                 )}
-                            </pre>
+
+                            </div>
 
 
                         </div>
