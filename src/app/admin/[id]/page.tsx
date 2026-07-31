@@ -73,7 +73,36 @@ export default function QuotePage(
                 <p>{quote.phone}</p>
 
             </div>
+            <div className="mt-10">
 
+                <h2 className="text-xl font-semibold">
+                    Uploaded Photos
+                </h2>
+
+                <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4">
+
+                    {uploads.map((upload) => (
+
+                        <a
+                            key={upload.id}
+                            href={`/api/admin/image/${upload.id}`}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+
+                            <img
+                                src={`/api/admin/image/${upload.id}`}
+                                alt={upload.filename}
+                                className="h-40 w-full rounded border object-cover"
+                            />
+
+                        </a>
+
+                    ))}
+
+                </div>
+
+            </div>
         </main>
 
     );

@@ -31,7 +31,7 @@ WHERE id = ?
         );
 
     }
-    
+
     const { env } =
         getCloudflareContext();
 
