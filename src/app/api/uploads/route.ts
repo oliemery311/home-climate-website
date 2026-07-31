@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
-import type { CloudflareEnv } from "@/lib/db";
 
 export async function POST(
     request: NextRequest
@@ -60,8 +59,7 @@ export async function POST(
         }
         const { env } =
             getCloudflareContext();
-        const cfEnv =
-            env as unknown as CloudflareEnv;
+        const cfEnv = env;
         const extension =
             file.name.split(".").pop();
 

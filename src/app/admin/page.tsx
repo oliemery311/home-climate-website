@@ -4,6 +4,7 @@ import {
     useEffect,
     useState
 } from "react";
+import Link from "next/link";
 
 interface Quote {
 
@@ -134,7 +135,14 @@ export default function AdminPage() {
                                     >
 
                                         <td className="p-3 font-medium">
-                                            {quote.reference_number}
+
+                                            <Link
+                                                href={`/admin/${quote.id}`}
+                                                className="text-blue-600 hover:underline"
+                                            >
+                                                {quote.reference_number}
+                                            </Link>
+
                                         </td>
 
                                         <td className="p-3">

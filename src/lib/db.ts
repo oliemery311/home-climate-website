@@ -2,17 +2,21 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 
-export interface CloudflareEnv {
-  DB: D1Database;
-  UPLOADS: R2Bucket;
+declare global {
+  interface CloudflareEnv {
+    DB: D1Database;
+    UPLOADS: R2Bucket;
+  }
 }
+
+export {};
 
 
 function getEnv(): CloudflareEnv {
 
   const { env } = getCloudflareContext();
 
-  return env as unknown as CloudflareEnv;
+  return env;
 
 }
 

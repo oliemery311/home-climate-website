@@ -24,8 +24,18 @@ email,
 postcode,
 created_at
 FROM quote_requests
-ORDER BY created_at DESC
-LIMIT 100
+ORDER BY
+CASE status
+    WHEN 'NEW' THEN 1
+    WHEN 'CONTACTED' THEN 2
+    WHEN 'SITE VISIT' THEN 3
+    WHEN 'QUOTED' THEN 4
+    WHEN 'WON' THEN 5
+    WHEN 'LOST' THEN 6
+    WHEN 'ARCHIVED' THEN 7
+    ELSE 99
+END,
+created_at DESC
 `
                 )
                 .all();
