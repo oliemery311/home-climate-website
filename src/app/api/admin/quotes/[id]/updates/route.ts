@@ -36,11 +36,11 @@ export async function POST(
 
     const { id } = await params;
 
-    const body = await request.json() as {
+    const body: {
         status: string;
         note: string;
         customerVisible: boolean;
-    };
+    } = await request.json();
 
     const db = getDB();
 
