@@ -13,26 +13,19 @@ export async function GET() {
             await db
                 .prepare(
                     `
-SELECT
-id,
-reference_number,
-status,
-lead_score,
-lead_temperature,
-name,
-email,
-postcode,
-created_at
+SELECT *
 FROM quote_requests
 ORDER BY
 CASE status
     WHEN 'NEW' THEN 1
     WHEN 'CONTACTED' THEN 2
-    WHEN 'SITE VISIT' THEN 3
-    WHEN 'QUOTED' THEN 4
-    WHEN 'WON' THEN 5
-    WHEN 'LOST' THEN 6
-    WHEN 'ARCHIVED' THEN 7
+    WHEN 'SITE_VISIT_BOOKED' THEN 3
+    WHEN 'SITE_VISIT_COMPLETE' THEN 4
+    WHEN 'QUOTED' THEN 5
+    WHEN 'WAITING_FOR_CUSTOMER' THEN 6
+    WHEN 'WON' THEN 7
+    WHEN 'LOST' THEN 8
+    WHEN 'CLOSED' THEN 9
     ELSE 99
 END,
 created_at DESC

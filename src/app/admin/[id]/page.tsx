@@ -10,6 +10,44 @@ type QuoteUpdate = {
     created_at: string;
 };
 
+function statusClass(status: string) {
+
+    switch (status) {
+
+        case "NEW":
+            return "bg-red-100 text-red-800";
+
+        case "CONTACTED":
+            return "bg-orange-100 text-orange-800";
+
+        case "SITE_VISIT_BOOKED":
+            return "bg-yellow-100 text-yellow-800";
+
+        case "SITE_VISIT_COMPLETE":
+            return "bg-blue-100 text-blue-800";
+
+        case "QUOTED":
+            return "bg-indigo-100 text-indigo-800";
+
+        case "WAITING_FOR_CUSTOMER":
+            return "bg-purple-100 text-purple-800";
+
+        case "WON":
+            return "bg-green-100 text-green-800";
+
+        case "LOST":
+            return "bg-slate-200 text-slate-700";
+
+        case "CLOSED":
+            return "bg-slate-300 text-slate-800";
+
+        default:
+            return "bg-slate-100 text-slate-700";
+
+    }
+
+}
+
 export default function QuotePage(
     {
         params
@@ -126,7 +164,13 @@ export default function QuotePage(
                 Current status:
                 {" "}
                 <strong>
-                    {quote.status}
+                    <span
+                        className={`rounded px-2 py-1 text-sm font-medium ${statusClass(
+                            quote.status
+                        )}`}
+                    >
+                        {quote.status}
+                    </span>
                 </strong>
             </p>
 
@@ -136,10 +180,103 @@ export default function QuotePage(
                     Customer
                 </h2>
 
-                <p>{quote.name}</p>
-                <p>{quote.email}</p>
-                <p>{quote.phone}</p>
-                <p>{quote.postcode}</p>
+                <div className="mt-4 rounded border p-4">
+
+                    <p>
+                        <strong>Name:</strong> {quote.name}
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong> {quote.email}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong> {quote.phone || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Postcode:</strong> {quote.postcode || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Address:</strong> {quote.address || "-"}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div className="mt-10">
+
+                <h2 className="text-xl font-semibold">
+                    Installation Requirements
+                </h2>
+
+                <div className="mt-4 rounded border p-4 space-y-2">
+
+                    <p>
+                        <strong>Property Type:</strong>{" "}
+                        {quote.property_type || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Rooms:</strong>{" "}
+                        {quote.room_types
+                            ? JSON.parse(quote.room_types).join(", ")
+                            : "-"}
+                    </p>
+
+                    <p>
+                        <strong>Number of Units:</strong>{" "}
+                        {quote.number_of_units || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Room Dimensions:</strong>{" "}
+                        {quote.room_dimensions || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Existing AC:</strong>{" "}
+                        {quote.existing_ac || "No"}
+                    </p>
+
+                    <p>
+                        <strong>Preferred Manufacturer:</strong>{" "}
+                        {quote.preferred_manufacturer || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Budget:</strong>{" "}
+                        {quote.budget_range || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Timeframe:</strong>{" "}
+                        {quote.timeframe || "-"}
+                    </p>
+
+                    <p>
+                        <strong>Lead Score:</strong>{" "}
+                        {quote.lead_score}
+                    </p>
+
+                    <p>
+                        <strong>Lead Temperature:</strong>{" "}
+                        {quote.lead_temperature}
+                    </p>
+
+                    <div className="pt-2">
+
+                        <strong>Customer Notes:</strong>
+
+                        <div className="mt-2 rounded bg-slate-50 p-3 whitespace-pre-wrap">
+                            {quote.notes || "No notes provided"}
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
