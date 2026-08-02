@@ -102,6 +102,25 @@ export default function CheckStatusPage() {
         }
 
     }
+    const STATUS_STEPS = [
+        "NEW",
+        "CONTACTED",
+        "SITE_VISIT_BOOKED",
+        "SITE_VISIT_COMPLETE",
+        "QUOTED",
+        "INSTALLATION_BOOKED",
+        "COMPLETE",
+    ];
+
+    const STATUS_LABELS: Record<string, string> = {
+        NEW: "Request Received",
+        CONTACTED: "Contacted",
+        SITE_VISIT_BOOKED: "Site Visit Booked",
+        SITE_VISIT_COMPLETE: "Site Visit Complete",
+        QUOTED: "Quote Issued",
+        INSTALLATION_BOOKED: "Installation Booked",
+        COMPLETE: "Installation Complete",
+    };
     return (
         <main className="mx-auto max-w-4xl p-8">
             <h1 className="text-3xl font-bold">Check Quote Status</h1>
@@ -296,6 +315,58 @@ export default function CheckStatusPage() {
                                 ? "Uploading..."
                                 : "Upload Photos"}
                         </button>
+
+                    </div>
+                    <div className="mt-8 rounded border p-6">
+
+                        <h2 className="text-xl font-semibold">
+                            Progress
+                        </h2>
+
+                        <div className="mt-4 space-y-3">
+
+                            {STATUS_STEPS.map((status) => {
+
+                                const currentIndex =
+                                    STATUS_STEPS.indexOf(
+                                        result.quote.status
+                                    );
+
+                                const thisIndex =
+                                    STATUS_STEPS.indexOf(
+                                        status
+                                    );
+
+                                const completed =
+                                    thisIndex <= currentIndex;
+
+                                return (
+
+                                    <div
+                                        key={status}
+                                        className="flex items-center gap-3"
+                                    >
+
+                                        <div
+                                            className={`h-6 w-6 rounded-full text-center text-sm leading-6 ${completed
+                                                    ? "bg-green-600 text-white"
+                                                    : "bg-slate-200"
+                                                }`}
+                                        >
+                                            {completed ? "✓" : ""}
+                                        </div>
+
+                                        <span>
+                                            {STATUS_LABELS[status]}
+                                        </span>
+
+                                    </div>
+
+                                );
+
+                            })}
+
+                        </div>
 
                     </div>
                     <div className="mt-10">
