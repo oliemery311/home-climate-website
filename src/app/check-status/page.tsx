@@ -9,7 +9,19 @@ export default function CheckStatusPage() {
     const [error, setError] = useState("");
     const [files, setFiles] = useState<File[]>([]);
     const [uploading, setUploading] = useState(false);
+    async function refreshPortal() {
 
+    const response =
+        await fetch(
+            "/api/customer/session"
+        );
+
+    const data =
+        await response.json();
+
+    setResult(data);
+
+} 
     async function lookup() {
         setError("");
 
@@ -57,7 +69,7 @@ export default function CheckStatusPage() {
                 }
             }
 
-            window.location.reload();
+            await refreshPortal();
         } catch (error) {
             console.error(error);
             alert("Unable to upload files");
@@ -108,7 +120,7 @@ export default function CheckStatusPage() {
 
                     <button
                         onClick={lookup}
-                        className="rounded bg-blue-600 px-5 py-3 text-white"
+                        className="rounded bg-[var(--hcs-blue)] px-5 py-3 text-white hover:opacity-90"
                     >
                         Check Status
                     </button>
@@ -210,7 +222,7 @@ export default function CheckStatusPage() {
                                 uploading ||
                                 files.length === 0
                             }
-                            className="mt-4 rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
+                            className="mt-4 rounded bg-[var(--hcs-blue)] px-4 py-2 text-white disabled:opacity-50 hover:opacity-90"
                         >
                             {uploading
                                 ? "Uploading..."

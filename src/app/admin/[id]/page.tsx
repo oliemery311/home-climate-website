@@ -18,13 +18,13 @@ function statusClass(status: string) {
             return "bg-red-100 text-red-800";
 
         case "CONTACTED":
-            return "bg-orange-100 text-orange-800";
+            return "bg-[var(--hcs-orange-light)]/30 text-[var(--hcs-orange)]";
 
         case "SITE_VISIT_BOOKED":
             return "bg-yellow-100 text-yellow-800";
 
         case "SITE_VISIT_COMPLETE":
-            return "bg-blue-100 text-blue-800";
+            return "bg-[var(--hcs-blue-light)]/20 text-[var(--hcs-blue)]";
 
         case "QUOTED":
             return "bg-indigo-100 text-indigo-800";

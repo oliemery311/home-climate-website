@@ -7,32 +7,41 @@ export default function Hero() {
 
         <div>
 
-          <p className="mb-5 font-semibold text-blue-600">
+          <p className="mb-5 font-semibold text-[var(--hcs-blue)]">
             Residential Air Conditioning Installation
           </p>
 
 
-          <h1 className="
-            text-4xl
-            font-bold
-            leading-tight
-            text-slate-900
-            md:text-6xl
-          ">
-            Air Conditioning Installation for Homes, Home Offices & Static Caravans.
+          <h1
+            className="
+  text-4xl
+  font-bold
+  leading-tight
+  text-slate-900
+  md:text-6xl
+"
+          >
+            Home Air Conditioning &
+            Climate Control Specialists
           </h1>
 
 
-          <p className="
-            mt-6
-            max-w-xl
-            text-lg
-            leading-relaxed
-            text-slate-600
-          ">
-            Stay comfortable throughout the year with reliable air
-            conditioning designed for bedrooms, home offices,
-            lounges and multi-room homes.
+          <p
+            className="
+  mt-6
+  max-w-xl
+  text-lg
+  leading-relaxed
+  text-slate-600
+  "
+          >
+            Professional installation of residential
+            air conditioning systems across North West Leicestershire
+            and the Midlands.
+
+            Bedrooms, lounges, home offices,
+            garden rooms, conservatories and
+            static caravans.
           </p>
 
 
@@ -40,7 +49,7 @@ export default function Hero() {
 
             <a
               href="#quote"
-              className="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+              className="rounded-lg bg-[var(--hcs-blue)] px-6 py-3 font-semibold text-white transition hover:opacity-90"
             >
               Request a Free Quote
             </a>
@@ -103,15 +112,23 @@ export default function Hero() {
           bg-slate-200
         ">
 
-          <div className="text-center text-slate-500">
+          <div
+            className="
+  overflow-hidden
+  rounded-3xl
+  shadow-xl
+  "
+          >
 
-            <p className="text-6xl">
-              ❄️
-            </p>
-
-            <p className="mt-4 font-medium">
-              Installation Gallery Image
-            </p>
+            <img
+              src="/hero-install.jpg"
+              alt="Home air conditioning installation"
+              className="
+    h-full
+    w-full
+    object-cover
+    "
+            />
 
           </div>
 

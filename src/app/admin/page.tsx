@@ -138,7 +138,7 @@ export default function AdminPage() {
 
                                             <Link
                                                 href={`/admin/${quote.id}`}
-                                                className="text-blue-600 hover:underline"
+                                                className="text-[var(--hcs-blue)] hover:underline"
                                             >
                                                 {quote.reference_number}
                                             </Link>
@@ -156,7 +156,7 @@ export default function AdminPage() {
                                         <td className="p-3">
 
                                             <span
-                                                className="rounded bg-blue-100 px-2 py-1 text-sm"
+                                                className="rounded bg-[var(--hcs-blue-light)]/20 px-2 py-1 text-sm text-[var(--hcs-blue)]"
                                             >
                                                 {quote.lead_score}
                                             </span>

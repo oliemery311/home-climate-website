@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 :root {
+  --hcs-blue: #234f93;
+  --hcs-blue-light: #4d82c3;
+
+  --hcs-orange: #f89c1c;
+  --hcs-orange-light: #ffb547;
+
   --background: #ffffff;
   --foreground: #0f172a;
 }
@@ -15,14 +21,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 .container {
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
   padding-inline: 1.5rem;
-}
-
-html {
-  scroll-behavior: smooth;
 }

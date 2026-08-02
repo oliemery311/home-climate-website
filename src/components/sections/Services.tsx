@@ -1,12 +1,36 @@
 export default function Services() {
 
 const services = [
-"Single Split Systems",
-"Multi Split Systems",
-"Bedroom Air Conditioning",
-"Home Office Air Conditioning",
-"Lounge & Conservatory Cooling",
-"Static Caravan Air Conditioning",
+  {
+    title: "Bedroom Air Conditioning",
+    description:
+      "Quiet, efficient cooling for a comfortable night's sleep."
+  },
+  {
+    title: "Home Office Air Conditioning",
+    description:
+      "Maintain a comfortable working environment throughout the year."
+  },
+  {
+    title: "Lounge & Conservatory Cooling",
+    description:
+      "Keep larger living spaces comfortable even during heatwaves."
+  },
+  {
+    title: "Multi-Room Systems",
+    description:
+      "Control multiple rooms from a single outdoor unit."
+  },
+  {
+    title: "Static Caravan Air Conditioning",
+    description:
+      "Heating and cooling solutions for holiday homes and caravans."
+  },
+  {
+    title: "Single Split Systems",
+    description:
+      "A cost-effective solution for individual rooms."
+  }
 ];
 
 
@@ -40,10 +64,10 @@ lg:grid-cols-3
 ">
 
 
-{services.map(service=>(
+{services.map((service) => (
 
 <div
-key={service}
+key={service.title}
 className="
 rounded-xl
 bg-white
@@ -56,7 +80,7 @@ shadow-sm
 font-semibold
 text-slate-900
 ">
-{service}
+{service.title}
 </h3>
 
 
@@ -65,7 +89,7 @@ mt-2
 text-sm
 text-slate-600
 ">
-Professional installation designed around your home.
+{service.description}
 </p>
 
 

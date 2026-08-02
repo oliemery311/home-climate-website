@@ -280,7 +280,7 @@ export default function QuoteWizard() {
                         </p>
 
 
-                        <div className="mt-3 rounded-lg bg-slate-100 p-4 text-2xl font-bold text-blue-700">
+                        <div className="mt-3 rounded-lg bg-slate-100 p-4 text-2xl font-bold text-[var(--hcs-blue)]">
 
                             {reference}
 
@@ -329,7 +329,7 @@ export default function QuoteWizard() {
                             <div
                                 key={index}
                                 className={`h-2 flex-1 rounded ${index + 1 <= step
-                                    ? "bg-blue-600"
+                                    ? "bg-[var(--hcs-blue)]"
                                     : "bg-slate-200"
                                     }`}
                             />
@@ -833,7 +833,7 @@ export default function QuoteWizard() {
 
                             <button
                                 onClick={nextStep}
-                                className="rounded bg-blue-600 px-5 py-3 text-white"
+                                className="rounded bg-[var(--hcs-blue)] px-5 py-3 text-white hover:opacity-90"
                             >
                                 Continue
                             </button>

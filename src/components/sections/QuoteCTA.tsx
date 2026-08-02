@@ -5,7 +5,7 @@ return (
 <section
 id="quote"
 className="
-bg-blue-600
+bg-[var(--hcs-blue)]
 py-20
 text-white
 "
@@ -27,7 +27,7 @@ Ready to make your home more comfortable?
 mx-auto
 mt-4
 max-w-2xl
-text-blue-100
+text-white/90
 ">
 Tell us about your home and we will provide a free quotation.
 </p>

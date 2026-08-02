@@ -3,32 +3,31 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="container flex h-20 items-center justify-between">
 
-        <a
-          href="/"
-          className="text-xl font-bold text-slate-900"
-        >
-          Home Climate Systems
-        </a>
+        <img
+          src="/logo.png"
+          alt="Home Climate Systems"
+          className="h-14 w-auto"
+        />
 
         <nav className="hidden items-center gap-8 md:flex">
 
           <a
             href="#services"
-            className="text-sm font-medium text-slate-700 hover:text-blue-600"
+            className="text-sm font-medium text-slate-700 hover:text-[var(--hcs-blue)]"
           >
             Services
           </a>
 
           <a
             href="#process"
-            className="text-sm font-medium text-slate-700 hover:text-blue-600"
+            className="text-sm font-medium text-slate-700 hover:text-[var(--hcs-blue)]"
           >
             Process
           </a>
 
           <a
             href="#faq"
-            className="text-sm font-medium text-slate-700 hover:text-blue-600"
+            className="text-sm font-medium text-slate-700 hover:text-[var(--hcs-blue)]"
           >
             FAQ
           </a>
@@ -37,13 +36,13 @@ export default function Header() {
             href="#quote"
             className="
             rounded-lg
-            bg-blue-600
+            bg-[var(--hcs-blue)]
             px-5
             py-3
             text-sm
             font-semibold
             text-white
-            hover:bg-blue-700
+            hover:opacity-90
             "
           >
             Free Quote
