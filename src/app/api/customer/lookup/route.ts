@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDB } from "@/lib/db";
+import crypto from "crypto";
 
 export async function POST(
     request: NextRequest
@@ -40,7 +41,32 @@ AND postcode = ?
         );
 
     }
+    const token = crypto.randomUUID();
 
+    const expires =
+        new Date(
+            Date.now() + 1000 * 60 * 60
+        ).toISOString();
+
+
+    await db
+        .prepare(
+            `
+        INSERT INTO customer_sessions
+        (
+            quote_id,
+            token,
+            expires_at
+        )
+        VALUES (?, ?, ?)
+        `
+        )
+        .bind(
+            quote.id,
+            token,
+            expires
+        )
+        .run();
     const uploads =
         await db
             .prepare(
@@ -68,11 +94,28 @@ ORDER BY created_at DESC
             .bind(quote.id)
             .all();
 
-    return NextResponse.json({
-        success: true,
-        quote,
-        uploads: uploads.results,
-        updates: updates.results
-    });
+    const response =
+        NextResponse.json({
+            success: true,
+            quote,
+            uploads: uploads.results,
+            updates: updates.results
+        });
+
+
+    response.cookies.set(
+        "customer_session",
+        token,
+        {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            path: "/",
+            maxAge: 60 * 60
+        }
+    );
+
+
+    return response;
 
 }

@@ -8,7 +8,43 @@ export async function GET(
 ) {
     const { id } = await params;
 
+    const token =
+        request.cookies.get(
+            "customer_session"
+        )?.value;
+
+    if (!token) {
+        return new Response(
+            "Unauthorized",
+            {
+                status: 401
+            }
+        );
+    }
+
     const db = getDB();
+
+    const session =
+        await db
+            .prepare(
+                `
+                SELECT *
+                FROM customer_sessions
+                WHERE token = ?
+                AND expires_at > datetime('now')
+                `
+            )
+            .bind(token)
+            .first();
+
+    if (!session) {
+        return new Response(
+            "Unauthorized",
+            {
+                status: 401
+            }
+        );
+    }
 
     const file =
         await db
@@ -17,11 +53,14 @@ export async function GET(
                 SELECT *
                 FROM file_uploads
                 WHERE id = ?
+                AND quote_id = ?
                 `
             )
-            .bind(id)
+            .bind(
+                id,
+                session.quote_id
+            )
             .first();
-
 
     if (!file) {
         return new Response(
@@ -32,16 +71,13 @@ export async function GET(
         );
     }
 
-
     const { env } =
         getCloudflareContext();
-
 
     const object =
         await env.UPLOADS.get(
             file.r2_key as string
         );
-
 
     if (!object) {
         return new Response(
@@ -51,7 +87,6 @@ export async function GET(
             }
         );
     }
-
 
     return new Response(
         object.body,
