@@ -17,6 +17,7 @@ text-white
 <h2 className="
 text-3xl
 font-bold
+text-[var(--hcs-orange-light)]
 md:text-4xl
 ">
 Ready to make your home more comfortable?

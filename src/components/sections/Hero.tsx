@@ -7,7 +7,7 @@ export default function Hero() {
 
         <div>
 
-          <p className="mb-5 font-semibold text-[var(--hcs-blue)]">
+          <p className="mb-5 font-semibold text-[var(--hcs-orange)]">
             Residential Air Conditioning Installation
           </p>
 
@@ -49,7 +49,7 @@ export default function Hero() {
 
             <a
               href="#quote"
-              className="rounded-lg bg-[var(--hcs-blue)] px-6 py-3 font-semibold text-white transition hover:opacity-90"
+              className="rounded-lg bg-[var(--hcs-blue)] px-7 py-4 font-semibold text-white transition hover:opacity-90"
             >
               Request a Free Quote
             </a>
@@ -60,12 +60,12 @@ export default function Hero() {
               className="
               rounded-lg
               border
-              border-slate-300
+              border-[var(--hcs-orange)]
               px-7
               py-4
               font-semibold
-              text-slate-700
-              hover:bg-white
+              text-[var(--hcs-orange)]
+              hover:bg-[var(--hcs-orange)]/10
               "
             >
               View Services

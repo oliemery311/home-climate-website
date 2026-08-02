@@ -1,18 +1,33 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
-      {/* Reduced height from h-20 to h-16, added px-4 */}
-      <div className="container flex h-16 items-center justify-between px-4">
-        
-        {/* Floating Logo Badge Container */}
-        <a 
-          href="#" 
-          className="relative z-10 -mb-6 flex items-center rounded-b-xl border border-t-0 border-slate-200 bg-white px-4 py-3 shadow-md transition-transform hover:scale-[1.02]"
-        >
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur transition-all duration-300">
+      <div 
+        className={`container flex items-center justify-between px-4 transition-all duration-300 ${
+          scrolled ? "h-14" : "h-20"
+        }`}
+      >
+        <a href="#">
           <img
             src="/logo.png"
             alt="Home Climate Systems"
-            className="h-12 w-auto object-contain"
+            className={`w-auto transition-all duration-300 ${
+              scrolled ? "h-10" : "h-16"
+            }`}
           />
         </a>
 

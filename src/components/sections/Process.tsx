@@ -57,7 +57,7 @@ w-10
 items-center
 justify-center
 rounded-full
-bg-[var(--hcs-blue)]
+bg-[var(--hcs-orange)]
 font-bold
 text-white
 ">
