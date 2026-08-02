@@ -38,7 +38,7 @@ return (
 
 <section
 id="services"
-className="bg-slate-50 py-20"
+className="bg-slate-50 py-24"
 >
 
 <div className="container">
@@ -69,10 +69,17 @@ lg:grid-cols-3
 <div
 key={service.title}
 className="
-rounded-xl
+rounded-2xl
+border
+border-slate-200
 bg-white
 p-6
 shadow-sm
+transition
+duration-200
+hover:-translate-y-1
+hover:border-[var(--hcs-blue-light)]
+hover:shadow-md
 "
 >
 

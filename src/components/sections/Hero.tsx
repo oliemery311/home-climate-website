@@ -1,13 +1,13 @@
 export default function Hero() {
   return (
-    <section className="bg-slate-50">
+    <section className="bg-gradient-to-b from-slate-50 via-white to-slate-50">
 
-      <div className="container grid gap-12 py-20 md:grid-cols-2 md:items-center md:py-32">
+      <div className="container grid gap-12 py-24 md:grid-cols-2 md:items-center md:py-32">
 
 
-        <div>
+        <div className="max-w-2xl">
 
-          <p className="mb-5 font-semibold text-[var(--hcs-orange)]">
+          <p className="mb-5 inline-flex rounded-full bg-[var(--hcs-orange)]/10 px-3 py-1 text-sm font-semibold text-[var(--hcs-blue)]">
             Residential Air Conditioning Installation
           </p>
 
@@ -17,6 +17,7 @@ export default function Hero() {
   text-4xl
   font-bold
   leading-tight
+  tracking-tight
   text-slate-900
   md:text-6xl
 "
@@ -49,7 +50,7 @@ export default function Hero() {
 
             <a
               href="#quote"
-              className="rounded-lg bg-[var(--hcs-blue)] px-7 py-4 font-semibold text-white transition hover:opacity-90"
+              className="rounded-lg bg-[var(--hcs-blue)] px-7 py-4 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90"
             >
               Request a Free Quote
             </a>
@@ -60,12 +61,14 @@ export default function Hero() {
               className="
               rounded-lg
               border
-              border-[var(--hcs-orange)]
+              border-[var(--hcs-blue-light)]
               px-7
               py-4
               font-semibold
-              text-[var(--hcs-orange)]
-              hover:bg-[var(--hcs-orange)]/10
+              text-[var(--hcs-blue)]
+              transition
+              hover:-translate-y-0.5
+              hover:bg-[var(--hcs-blue)]/5
               "
             >
               View Services
@@ -108,15 +111,21 @@ export default function Hero() {
           min-h-[350px]
           items-center
           justify-center
-          rounded-3xl
-          bg-slate-200
+          rounded-[28px]
+          bg-gradient-to-br
+          from-slate-200
+          to-slate-100
+          p-3
+          shadow-[0_20px_60px_-20px_rgba(35,79,147,0.35)]
         ">
 
           <div
             className="
   overflow-hidden
-  rounded-3xl
-  shadow-xl
+  rounded-[24px]
+  shadow-lg
+  ring-1
+  ring-slate-200
   "
           >
 

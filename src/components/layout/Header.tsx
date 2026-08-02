@@ -1,33 +1,15 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur transition-all duration-300">
-      <div 
-        className={`container flex items-center justify-between px-4 transition-all duration-300 ${
-          scrolled ? "h-14" : "h-20"
-        }`}
-      >
-        <a href="#">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div className="container flex h-20 items-center justify-between gap-6 px-4">
+        <a
+          href="#"
+          className="relative z-10 flex items-center rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm ring-1 ring-slate-100 transition-transform hover:scale-[1.02]"
+        >
           <img
             src="/logo.png"
             alt="Home Climate Systems"
-            className={`w-auto transition-all duration-300 ${
-              scrolled ? "h-10" : "h-16"
-            }`}
+            className="h-14 w-auto max-w-[220px] object-contain md:h-16"
           />
         </a>
 
@@ -55,7 +37,7 @@ export default function Header() {
 
           <a
             href="#quote"
-            className="rounded-lg bg-[var(--hcs-blue)] px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+            className="rounded-lg bg-[var(--hcs-blue)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
           >
             Free Quote
           </a>
