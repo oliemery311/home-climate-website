@@ -233,7 +233,7 @@ export default function CheckStatusPage() {
                                     (upload: any) => (
                                         <img
                                             key={upload.id}
-                                            src={`/api/admin/image/${upload.id}`}
+                                            src={`/api/customer/image/${upload.id}`}
                                             alt={upload.filename}
                                             className="rounded border"
                                         />
