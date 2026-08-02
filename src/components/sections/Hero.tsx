@@ -23,7 +23,7 @@ export default function Hero() {
 "
           >
             Home Air Conditioning &
-            Climate Control Specialists
+            Climate Specialists
           </h1>
 
 
@@ -83,21 +83,21 @@ export default function Hero() {
               <strong className="block text-slate-900">
                 ✓ F-Gas
               </strong>
-              Certified
+                  Certified
             </div>
 
             <div>
               <strong className="block text-slate-900">
                 ✓ Fully Insured
               </strong>
-              Installer
+              
             </div>
 
             <div>
               <strong className="block text-slate-900">
                ✓ Residential
               </strong>
-              Specialists
+                 Installations
             </div>
 
           </div>
