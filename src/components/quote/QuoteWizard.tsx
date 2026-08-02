@@ -31,6 +31,11 @@ const steps = [
     "Review",
 ];
 
+const fieldClass =
+    "mt-2 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 transition focus:border-[var(--hcs-blue)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--hcs-blue)]/20";
+
+const reviewCardClass =
+    "rounded-2xl border border-slate-200 bg-slate-50 p-4";
 
 export default function QuoteWizard() {
     const [step, setStep] = useState(1);
@@ -258,12 +263,12 @@ export default function QuoteWizard() {
         return (
             <section
                 id="quote"
-                className="scroll-mt-20 bg-slate-50 py-20"
+                className="scroll-mt-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 py-20"
             >
 
                 <div className="mx-auto max-w-3xl px-4">
 
-                    <div className="rounded-xl bg-white p-8 text-center shadow">
+                    <div className="rounded-[28px] border border-slate-200 bg-white p-8 text-center shadow-[0_20px_60px_-28px_rgba(35,79,147,0.35)]">
 
                         <h2 className="text-3xl font-bold">
                             Thank you for your request
@@ -304,18 +309,23 @@ export default function QuoteWizard() {
 
         <section
             id="quote"
-            className="scroll-mt-20 bg-slate-50 py-20"
+            className="scroll-mt-20 bg-gradient-to-b from-slate-50 via-white to-slate-50 py-20"
         >
 
-            <div className="mx-auto max-w-3xl px-4">
+            <div className="mx-auto max-w-4xl px-4">
 
 
-                <h2 className="text-3xl font-bold">
-                    Request a Free Quote
-                </h2>
+                <div className="text-center">
+                    <p className="inline-flex rounded-full bg-[var(--hcs-orange)]/10 px-3 py-1 text-sm font-semibold text-[var(--hcs-blue)]">
+                        Free consultation
+                    </p>
+                    <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                        Request a Free Quote
+                    </h2>
+                </div>
 
 
-                <p className="mt-3 text-slate-600">
+                <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
                     Tell us about your home and we will
                     recommend the right air conditioning solution.
                 </p>
@@ -328,7 +338,7 @@ export default function QuoteWizard() {
 
                             <div
                                 key={index}
-                                className={`h-2 flex-1 rounded ${index + 1 <= step
+                                className={`h-2 flex-1 rounded-full ${index + 1 <= step
                                     ? "bg-[var(--hcs-blue)]"
                                     : "bg-slate-200"
                                     }`}
@@ -341,7 +351,7 @@ export default function QuoteWizard() {
 
 
 
-                <div className="mt-8 rounded-xl bg-white p-6 shadow">
+                <div className="mt-8 rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_-28px_rgba(35,79,147,0.35)] md:p-8">
 
 
                     {step === 1 && (
@@ -353,11 +363,11 @@ export default function QuoteWizard() {
                             </h3>
 
 
-                            <label className="mt-6 block">
+                            <label className="mt-6 block text-sm font-medium text-slate-700">
                                 Property type
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.propertyType}
                                     onChange={(e) =>
                                         updateField(
@@ -385,12 +395,12 @@ export default function QuoteWizard() {
 
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Room type
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.roomType}
                                     onChange={(e) =>
                                         updateField(
@@ -431,14 +441,14 @@ export default function QuoteWizard() {
                             </h3>
 
 
-                            <label className="mt-6 block">
+                            <label className="mt-6 block text-sm font-medium text-slate-700">
 
                                 Number of indoor units
 
                                 <input
                                     type="number"
                                     min="1"
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.numberOfUnits}
                                     onChange={(e) =>
                                         updateField(
@@ -452,12 +462,12 @@ export default function QuoteWizard() {
 
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Room dimensions
 
                                 <input
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     placeholder="Example: 5m x 4m x 2.4m"
                                     value={formData.roomDimensions}
                                     onChange={(e) =>
@@ -471,12 +481,12 @@ export default function QuoteWizard() {
                             </label>
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Budget
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.budgetRange}
                                     onChange={(e) =>
                                         updateField(
@@ -501,12 +511,12 @@ export default function QuoteWizard() {
 
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Timescale
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.timeframe}
                                     onChange={(e) =>
                                         updateField(
@@ -528,7 +538,7 @@ export default function QuoteWizard() {
                                 </select>
 
                             </label>
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Photos
 
@@ -536,7 +546,7 @@ export default function QuoteWizard() {
                                     type="file"
                                     multiple
                                     accept="image/jpeg,image/png,image/webp"
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     onChange={(e) => {
 
                                         const selected =
@@ -553,19 +563,19 @@ export default function QuoteWizard() {
 
                             {files.length > 0 && (
 
-                                <div className="mt-3 rounded bg-slate-100 p-3 text-sm">
+                                <div className="mt-3 rounded-xl bg-[var(--hcs-blue)]/5 p-3 text-sm text-slate-700">
 
                                     {files.length} photo(s) selected
 
                                 </div>
 
                             )}
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Existing AC System
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.existingAcSystem}
                                     onChange={(e) =>
                                         updateField(
@@ -588,12 +598,12 @@ export default function QuoteWizard() {
                             </label>
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Preferred Manufacturer
 
                                 <select
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={fieldClass}
                                     value={formData.manufacturer}
                                     onChange={(e) =>
                                         updateField(
@@ -628,13 +638,13 @@ export default function QuoteWizard() {
                             </label>
 
 
-                            <label className="mt-4 block">
+                            <label className="mt-4 block text-sm font-medium text-slate-700">
 
                                 Additional Information
 
                                 <textarea
                                     rows={5}
-                                    className="mt-2 w-full rounded border p-3"
+                                    className={`${fieldClass} resize-none`}
                                     placeholder="Tell us anything useful about your project..."
                                     value={formData.notes}
                                     onChange={(e) =>
@@ -672,7 +682,7 @@ export default function QuoteWizard() {
 
                                 <input
                                     key={field}
-                                    className="mt-4 w-full rounded border p-3"
+                                    className={`${fieldClass} mt-4`}
                                     placeholder={label}
                                     value={
                                         formData[
@@ -716,75 +726,75 @@ export default function QuoteWizard() {
                                 />
                             </div>
 
-                            <div className="mt-6 space-y-4">
+                            <div className="mt-6 grid gap-4 md:grid-cols-2">
 
-                                <div>
-                                    <strong>Property Type:</strong>{" "}
-                                    {formData.propertyType}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Property Type:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.propertyType}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Room Type:</strong>{" "}
-                                    {formData.roomType}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Room Type:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.roomType}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Indoor Units:</strong>{" "}
-                                    {formData.numberOfUnits}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Indoor Units:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.numberOfUnits}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Room Dimensions:</strong>{" "}
-                                    {formData.roomDimensions || "Not provided"}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Room Dimensions:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.roomDimensions || "Not provided"}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Budget:</strong>{" "}
-                                    {formData.budgetRange}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Budget:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.budgetRange}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Timeframe:</strong>{" "}
-                                    {formData.timeframe}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Timeframe:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.timeframe}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Name:</strong>{" "}
-                                    {formData.name}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Name:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.name}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Email:</strong>{" "}
-                                    {formData.email}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Email:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.email}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Phone:</strong>{" "}
-                                    {formData.phone || "Not provided"}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Phone:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.phone || "Not provided"}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Postcode:</strong>{" "}
-                                    {formData.postcode}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Postcode:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.postcode}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Address:</strong>{" "}
-                                    {formData.address || "Not provided"}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Address:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{formData.address || "Not provided"}</div>
                                 </div>
 
-                                <div>
-                                    <strong>Photos:</strong>{" "}
-                                    {files.length}
+                                <div className={reviewCardClass}>
+                                    <strong className="text-slate-900">Photos:</strong>{" "}
+                                    <div className="mt-1 text-slate-600">{files.length}</div>
                                 </div>
 
                                 {formData.notes && (
 
-                                    <div>
+                                    <div className={`${reviewCardClass} md:col-span-2`}>
 
-                                        <strong>Additional Notes:</strong>
+                                        <strong className="text-slate-900">Additional Notes:</strong>
 
-                                        <div className="mt-2 rounded bg-slate-100 p-3">
+                                        <div className="mt-2 rounded-xl bg-white p-3 text-slate-600">
 
                                             {formData.notes}
 
@@ -820,7 +830,7 @@ export default function QuoteWizard() {
 
                             <button
                                 onClick={previousStep}
-                                className="rounded border px-5 py-3"
+                                className="rounded-xl border border-slate-300 bg-white px-5 py-3 font-medium text-slate-700 transition hover:border-[var(--hcs-blue)] hover:text-[var(--hcs-blue)]"
                             >
                                 Back
                             </button>
@@ -833,7 +843,7 @@ export default function QuoteWizard() {
 
                             <button
                                 onClick={nextStep}
-                                className="rounded bg-[var(--hcs-blue)] px-5 py-3 text-white hover:opacity-90"
+                                className="rounded-xl bg-[var(--hcs-blue)] px-5 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90"
                             >
                                 Continue
                             </button>
@@ -843,7 +853,7 @@ export default function QuoteWizard() {
                             <button
                                 disabled={loading || !verified}
                                 onClick={submitQuote}
-                                className="rounded bg-green-600 px-5 py-3 text-white"
+                                className="rounded-xl bg-[var(--hcs-blue)] px-5 py-3 font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                             >
 
                                 {

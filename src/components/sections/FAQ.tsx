@@ -24,7 +24,7 @@ return (
 
 <section
 id="faq"
-className="py-20"
+className="py-24"
 >
 
 <div className="container">
@@ -34,7 +34,9 @@ className="py-20"
 text-center
 text-3xl
 font-bold
+tracking-tight
 text-slate-900
+md:text-4xl
 ">
 Frequently Asked Questions
 </h2>
@@ -53,10 +55,12 @@ space-y-5
 <div
 key={q}
 className="
-rounded-xl
+rounded-2xl
 border
 border-slate-200
+bg-white
 p-6
+shadow-sm
 "
 >
 

@@ -18,13 +18,17 @@ export default function Benefits() {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-24">
 
       <div className="container">
 
         <div className="mx-auto max-w-3xl text-center">
 
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
+          <p className="inline-flex rounded-full bg-[var(--hcs-orange)]/10 px-3 py-1 text-sm font-semibold text-[var(--hcs-blue)]">
+            Why it matters
+          </p>
+
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
             More comfort in every room
           </h2>
 
@@ -49,6 +53,11 @@ export default function Benefits() {
               bg-white
               p-8
               shadow-sm
+              transition
+              duration-200
+              hover:-translate-y-1
+              hover:border-[var(--hcs-blue-light)]
+              hover:shadow-md
               "
             >
 

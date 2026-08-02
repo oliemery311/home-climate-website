@@ -1,6 +1,7 @@
 {
   "name": "home-climate-systems",
   "compatibility_date": "2026-07-21",
+  
   "compatibility_flags": [
     "nodejs_compat"
   ],

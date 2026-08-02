@@ -12,7 +12,7 @@ const reasons=[
 
 return (
 
-<section className="bg-slate-950 py-20 text-white">
+<section className="bg-slate-950 py-24 text-white">
 
 <div className="container">
 
@@ -21,6 +21,7 @@ return (
 text-center
 text-3xl
 font-bold
+tracking-tight
 md:text-4xl
 ">
 Why choose Home Climate Systems?
@@ -40,9 +41,16 @@ md:grid-cols-3
 <div
 key={reason}
 className="
-rounded-xl
+rounded-2xl
+border
+border-white/10
 bg-white/10
 p-6
+backdrop-blur-sm
+transition
+duration-200
+hover:-translate-y-1
+hover:bg-white/15
 "
 >
 {reason}
