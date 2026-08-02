@@ -78,23 +78,23 @@ export default function Hero() {
 
             <div>
               <strong className="block text-slate-900">
-                F-Gas
+                ✓ F-Gas
               </strong>
               Certified
             </div>
 
             <div>
               <strong className="block text-slate-900">
-                Local
+                ✓ Fully Insured
               </strong>
               Installer
             </div>
 
             <div>
               <strong className="block text-slate-900">
-                Free
+               ✓ Residential
               </strong>
-              Quotations
+              Specialists
             </div>
 
           </div>
@@ -121,7 +121,7 @@ export default function Hero() {
           >
 
             <img
-              src="/hero-install.jpg"
+              src="/hero-install.png"
               alt="Home air conditioning installation"
               className="
     h-full
