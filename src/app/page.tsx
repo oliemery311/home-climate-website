@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import FAQ from "@/components/sections/FAQ";
 import QuoteCTA from "@/components/sections/QuoteCTA";
 import QuoteWizard from "@/components/quote/QuoteWizard";
+import Footer from "@/components/sections/Footer";
 
 export default function Home(){
 
@@ -35,6 +36,7 @@ return (
 
 </main>
 
+<Footer />
 </>
 
 );

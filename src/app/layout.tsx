@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title:
-    "Home Climate Systems | Air Conditioning Installation Leicester",
+    "Home Climate Systems | Air Conditioning Installation",
 
   description:
     "Professional residential air conditioning installation across Leicester and the Midlands. Bedrooms, home offices, lounges and multi-room systems.",
