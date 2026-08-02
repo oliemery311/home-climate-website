@@ -7,18 +7,12 @@ export default function CheckStatusPage() {
     const [postcode, setPostcode] = useState("");
     const [result, setResult] = useState<any>(null);
     const [error, setError] = useState("");
-    const [files, setFiles] =
-        useState<File[]>([]);
+    const [files, setFiles] = useState<File[]>([]);
+    const [uploading, setUploading] = useState(false);
 
-    const [uploading, setUploading] =
-        useState(false);
     async function lookup() {
         setError("");
-        const [files, setFiles] =
-            useState<File[]>([]);
 
-        const [uploading, setUploading] =
-            useState(false);
         const response = await fetch("/api/customer/lookup", {
             method: "POST",
             headers: {
@@ -38,8 +32,8 @@ export default function CheckStatusPage() {
         const data = await response.json();
         setResult(data);
     }
-    async function uploadFiles() {
 
+    async function uploadFiles() {
         if (!result) {
             return;
         }
@@ -47,61 +41,31 @@ export default function CheckStatusPage() {
         setUploading(true);
 
         try {
-
             for (const file of files) {
+                const formData = new FormData();
+                formData.append("file", file);
+                formData.append("reference", result.quote.reference_number);
+                formData.append("quoteId", String(result.quote.id));
 
-                const formData =
-                    new FormData();
-
-                formData.append(
-                    "file",
-                    file
-                );
-
-                formData.append(
-                    "reference",
-                    result.quote.reference_number
-                );
-
-                formData.append(
-                    "quoteId",
-                    String(result.quote.id)
-                );
-
-                const response =
-                    await fetch(
-                        "/api/uploads",
-                        {
-                            method: "POST",
-                            body: formData
-                        }
-                    );
+                const response = await fetch("/api/uploads", {
+                    method: "POST",
+                    body: formData,
+                });
 
                 if (!response.ok) {
-                    throw new Error(
-                        "Upload failed"
-                    );
+                    throw new Error("Upload failed");
                 }
-
             }
 
             window.location.reload();
-
         } catch (error) {
-
             console.error(error);
-
-            alert(
-                "Unable to upload files"
-            );
-
+            alert("Unable to upload files");
         } finally {
-
             setUploading(false);
-
         }
-
     }
+
     const STATUS_STEPS = [
         "NEW",
         "CONTACTED",
@@ -121,6 +85,7 @@ export default function CheckStatusPage() {
         INSTALLATION_BOOKED: "Installation Booked",
         COMPLETE: "Installation Complete",
     };
+
     return (
         <main className="mx-auto max-w-4xl p-8">
             <h1 className="text-3xl font-bold">Check Quote Status</h1>
@@ -186,7 +151,8 @@ export default function CheckStatusPage() {
                                 <strong>Property Type:</strong> {result.quote.property_type}
                             </p>
                             <p>
-                                <strong>Rooms:</strong> {JSON.parse(
+                                <strong>Rooms:</strong>{" "}
+                                {JSON.parse(
                                     result.quote.room_types || "[]"
                                 ).join(", ")}
                             </p>
@@ -214,8 +180,8 @@ export default function CheckStatusPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-8 rounded border p-6">
 
+                    <div className="mt-8 rounded border p-6">
                         <h2 className="text-xl font-semibold">
                             Upload More Photos
                         </h2>
@@ -250,83 +216,40 @@ export default function CheckStatusPage() {
                                 ? "Uploading..."
                                 : "Upload Photos"}
                         </button>
-
                     </div>
-                    <div className="mt-8 rounded border p-6">
 
+                    <div className="mt-8 rounded border p-6">
                         <h2 className="text-xl font-semibold">
                             Uploaded Photos
                         </h2>
 
-                        {result.uploads.length === 0 ? (
-
+                        {result.uploads?.length === 0 ? (
                             <p className="mt-4 text-slate-500">
                                 No photos uploaded.
                             </p>
-
                         ) : (
-
                             <div className="mt-4 grid gap-4 md:grid-cols-3">
-
-                                {result.uploads.map(
+                                {result.uploads?.map(
                                     (upload: any) => (
-
                                         <img
                                             key={upload.id}
                                             src={`/api/admin/image/${upload.id}`}
                                             alt={upload.filename}
                                             className="rounded border"
                                         />
-
                                     )
                                 )}
-
                             </div>
-
                         )}
-
                     </div>
+
                     <div className="mt-8 rounded border p-6">
-
-                        <h2 className="text-xl font-semibold">
-                            Upload More Photos
-                        </h2>
-
-                        <input
-                            type="file"
-                            multiple
-                            accept="image/*"
-                            className="mt-4"
-                            onChange={(e) =>
-                                setFiles(
-                                    Array.from(
-                                        e.target.files ?? []
-                                    )
-                                )
-                            }
-                        />
-
-                        <button
-                            className="mt-4 rounded bg-blue-600 px-4 py-2 text-white"
-                            disabled={uploading}
-                            onClick={uploadFiles}
-                        >
-                            {uploading
-                                ? "Uploading..."
-                                : "Upload Photos"}
-                        </button>
-
-                    </div>
-                    <div className="mt-8 rounded border p-6">
-
                         <h2 className="text-xl font-semibold">
                             Progress
                         </h2>
 
                         <div className="mt-4 space-y-3">
-
                             {STATUS_STEPS.map((status) => {
-
                                 const currentIndex =
                                     STATUS_STEPS.indexOf(
                                         result.quote.status
@@ -341,17 +264,16 @@ export default function CheckStatusPage() {
                                     thisIndex <= currentIndex;
 
                                 return (
-
                                     <div
                                         key={status}
                                         className="flex items-center gap-3"
                                     >
-
                                         <div
-                                            className={`h-6 w-6 rounded-full text-center text-sm leading-6 ${completed
+                                            className={`h-6 w-6 rounded-full text-center text-sm leading-6 ${
+                                                completed
                                                     ? "bg-green-600 text-white"
                                                     : "bg-slate-200"
-                                                }`}
+                                            }`}
                                         >
                                             {completed ? "✓" : ""}
                                         </div>
@@ -359,16 +281,12 @@ export default function CheckStatusPage() {
                                         <span>
                                             {STATUS_LABELS[status]}
                                         </span>
-
                                     </div>
-
                                 );
-
                             })}
-
                         </div>
-
                     </div>
+
                     <div className="mt-10">
                         <h2 className="text-2xl font-semibold">
                             {result.quote.reference_number}
