@@ -18,10 +18,8 @@ export async function POST(
         const quoteId =
             formData.get("quoteId");
 
-        if (
-            !(file instanceof File)
+        if (!(file instanceof File)) {
 
-        ) {
             return NextResponse.json(
                 {
                     success: false,
@@ -31,7 +29,43 @@ export async function POST(
                     status: 400
                 }
             );
+
         }
+
+        if (
+            typeof reference !== "string" ||
+            !reference
+        ) {
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Missing reference"
+                },
+                {
+                    status: 400
+                }
+            );
+
+        }
+
+        if (
+            typeof quoteId !== "string" ||
+            !quoteId
+        ) {
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Missing quote ID"
+                },
+                {
+                    status: 400
+                }
+            );
+
+        }
+
         const allowedTypes = [
             "image/jpeg",
             "image/png",
@@ -39,27 +73,68 @@ export async function POST(
         ];
 
         if (!allowedTypes.includes(file.type)) {
+
             return NextResponse.json(
                 {
                     success: false,
                     error: "Invalid file type",
                 },
-                { status: 400 }
+                {
+                    status: 400
+                }
             );
+
         }
 
-        if (file.size > 10 * 1024 * 1024) {
+        if (file.size > 20 * 1024 * 1024) {
+
             return NextResponse.json(
                 {
                     success: false,
                     error: "File too large",
                 },
-                { status: 400 }
+                {
+                    status: 400
+                }
             );
+
         }
+
         const { env } =
             getCloudflareContext();
+
         const cfEnv = env;
+
+        const quote =
+            await cfEnv.DB
+                .prepare(
+                    `
+SELECT id
+FROM quote_requests
+WHERE id = ?
+AND reference_number = ?
+`
+                )
+                .bind(
+                    Number(quoteId),
+                    reference
+                )
+                .first();
+
+        if (!quote) {
+
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Invalid quote"
+                },
+                {
+                    status: 403
+                }
+            );
+
+        }
+
         const extension =
             file.name.split(".").pop();
 
