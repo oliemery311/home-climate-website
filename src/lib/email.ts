@@ -52,7 +52,7 @@ export async function sendQuoteEmails(
         </p>
 
         <p>
-          We'll review your request and get back to you shortly.
+          We'll review your request and get back to you shortly. You can check on the status of your request by visiting the following link: https://homeclimatesystems.co.uk/check-status and entering your reference number and postcode.
         </p>
 
         <p>
